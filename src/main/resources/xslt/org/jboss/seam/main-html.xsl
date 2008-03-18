@@ -12,7 +12,7 @@
 		xmlns:fo="http://www.w3.org/1999/XSL/Format"
 		exclude-result-prefixes="#default">
 
-   <xsl:import href="main-html.xsl"/>
+   <xsl:import href="classpath:/xslt/org/jboss/main-html.xsl"/>
     
     <!-- Placement of titles -->
     <xsl:param name="formal.title.placement">
