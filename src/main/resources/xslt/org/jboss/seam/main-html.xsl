@@ -13,6 +13,7 @@
 		exclude-result-prefixes="#default">
 
    <xsl:import href="classpath:/xslt/org/jboss/main-html.xsl"/>
+   <xsl:import href="version.xsl" />
    
    <!-- These extensions are required for table printing and other stuff -->
     <xsl:param name="use.extensions">1</xsl:param>
