@@ -12,7 +12,9 @@
 		xmlns:fo="http://www.w3.org/1999/XSL/Format"
 		exclude-result-prefixes="#default">
 
-   <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl"/>
+   <!-- Needs MPJDOCBOOK-8 -->
+   <!-- <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl"/>-->
+   <xsl:import href="../main-pdf.xsl" />
    
        <xsl:param name="use.extensions">1</xsl:param>
 

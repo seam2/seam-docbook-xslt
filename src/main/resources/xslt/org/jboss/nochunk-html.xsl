@@ -1,47 +1,70 @@
 <?xml version='1.0'?>
  
 <!--
-	Copyright 2008 JBoss, a division of Red Hat
-	License: LGPL
-	Author: Pete Muir
+	Copyright 2007 Red Hat, Inc.
+	License: GPL
+	Author: Jeff Fearn <jfearn@redhat.com>
+	Author: Tammy Fox <tfox@redhat.com>
+	Author: Andy Fitzsimon <afitzsim@redhat.com>
+        Author: Mark Newton <mark.newton@jboss.org>
 -->
 
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		version='1.0'
-		xmlns="http://www.w3.org/TR/xhtml1/transitional"
-		xmlns:fo="http://www.w3.org/1999/XSL/Format"
-		exclude-result-prefixes="#default">
+				xmlns:exsl="http://exslt.org/common"
+				version="1.0"
+				exclude-result-prefixes="exsl">
 
-   <!-- Needs MPJDOCBOOK-8 -->
-   <!-- <xsl:import href="classpath:/xslt/org/jboss/nochunk-html.xsl"/>-->
-   <xsl:import href="../nochunk-html.xsl" />
-   <xsl:import href="common-xhtml.xsl" />
-   <xsl:import href="version.xsl" />
-   
-   <xsl:param name="html.stylesheet" select="'css/seamframework-nochunk.css'" />
-   
-   <!--
+	<xsl:import href="http://docbook.sourceforge.net/release/xsl/1.72.0/xhtml/docbook.xsl"/>
+
+	<xsl:include href="redhat.xsl"/>
+	<xsl:include href="xhtml-common.xsl"/>
+        <xsl:include href="highlight.xsl"/>
+        <xsl:param name="confidential" select="0"/>
+
+<!-- Ignore image scaling in html version -->
+<xsl:param name="ignore.image.scaling" select="1"/> 
+
+<!-- This is needed to generate the correct xhtml-strict DOCTYPE on the page -->
+<xsl:output method="xml"
+            encoding="UTF-8"
+            indent="yes"
+            doctype-public="-//W3C//DTD XHTML 1.0 Strict//EN"
+            doctype-system="http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"
+            standalone="no"/>
+
+<!--
 From: xhtml/titlepage-templates.xsl
-Reason: Needed to add SeamFramework.org banner
+Reason: Needed to add JBoss.org and Community Documentation graphics to header
 Version: 1.72.0
 -->
 <xsl:template name="book.titlepage.recto">
-            <p xmlns="http://www.w3.org/1999/xhtml">
-               <xsl:attribute name="id">
-                  <xsl:text>title</xsl:text>
-               </xsl:attribute>
-               <a>
-                  <xsl:attribute name="href">
-                     <xsl:text>http://www.seamframework.org</xsl:text>
-                  </xsl:attribute>
-                  <xsl:attribute name="class">
-                     <xsl:text>seamFrameworkOrg_href</xsl:text>
-                  </xsl:attribute>
-                  <strong>
-                          SeamFramework.org
-                  </strong>
-               </a>
-            </p>
+				<p xmlns="http://www.w3.org/1999/xhtml">
+					<xsl:attribute name="id">
+						<xsl:text>title</xsl:text>
+					</xsl:attribute>
+					<a>
+						<xsl:attribute name="href">
+							<xsl:text>http://www.jboss.org</xsl:text>
+						</xsl:attribute>
+						<xsl:attribute name="class">
+							<xsl:text>jbossOrg_href</xsl:text>
+						</xsl:attribute>
+						<strong>
+						        JBoss.org	
+						</strong>
+					</a>
+					<a>
+						<xsl:attribute name="href">
+							<xsl:text>http://labs.jboss.com/projects/docs</xsl:text>
+						</xsl:attribute>
+						<xsl:attribute name="class">
+							<xsl:text>commDoc_href</xsl:text>
+						</xsl:attribute>
+						<strong>
+						        Community Documentation	
+						</strong>
+					</a>
+				</p>
   <xsl:choose>
     <xsl:when test="bookinfo/title">
       <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/title"/>
