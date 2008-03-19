@@ -1,8 +1,8 @@
 <?xml version='1.0'?>
  
 <!--
-	Copyright 2007 Red Hat, Inc.
-	License: GPL
+	Copyright 2008 JBoss, a division of Red Hat
+	License: LGPL
 	Author: Pete Muir
 -->
 
@@ -14,35 +14,12 @@
 
    <xsl:import href="classpath:/xslt/org/jboss/main-html.xsl"/>
    <xsl:import href="version.xsl" />
+   <xsl:import href="common-xhtml.xsl" />
    
-   <!-- These extensions are required for table printing and other stuff -->
-    <xsl:param name="use.extensions">1</xsl:param>
-    <xsl:param name="tablecolumns.extension">0</xsl:param>
-    <xsl:param name="callout.extensions">1</xsl:param>
-    <xsl:param name="graphicsize.extension">0</xsl:param>
-   
-   <xsl:param name="html.stylesheet" select="'css/seamframework.css'"/>
-    
-    <!-- Placement of titles -->
-    <xsl:param name="formal.title.placement">
-        figure after
-        example before
-        equation before
-        table before
-        procedure before
-    </xsl:param>
-    <!-- Callouts -->
-    
-    <!-- Don't use graphics, use a simple number style -->
-    <xsl:param name="callout.graphics">0</xsl:param>
-    <xsl:param name="callout.defaultcolumn">90</xsl:param>
-
-    <!-- Place callout marks at this column in annotated areas -->
+   <xsl:param name="html.stylesheet" select="'css/seamframework.css'" />
     
     <!--
-From: xhtml/chunk-common.xsl
-Reason: remove tables, truncate link text
-Version:
+   Replace the navigation header with our banner and link
 -->
 <xsl:template name="header.navigation">
    <xsl:param name="prev" select="/foo"/>
