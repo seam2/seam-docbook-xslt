@@ -9,30 +9,33 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'
    xmlns="http://www.w3.org/TR/xhtml1/transitional"
    xmlns:fo="http://www.w3.org/1999/XSL/Format"
-   xmlns:rf="java:org.richfaces.highlight.XhtmlRendererFactory"
-   xmlns:sverb="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Verbatim"
-   xmlns:xverb="com.nwalsh.xalan.Verbatim"
-   xmlns:lxslt="http://xml.apache.org/xslt"
-   exclude-result-prefixes="sverb xverb lxslt">
+   exclude-result-prefixes="#default">
 
-   <!-- These extensions are required for table printing and other stuff -->
+   <!--  Enable extensions (needed for callouts) -->
    <xsl:param name="use.extensions">1</xsl:param>
-   <xsl:param name="tablecolumns.extension">0</xsl:param>
+   
+   <!-- Enable callouts -->
    <xsl:param name="callout.extensions">1</xsl:param>
+   
+   <!-- And disable these extensions -->
+   <xsl:param name="tablecolumns.extension">0</xsl:param>
    <xsl:param name="graphicsize.extension">0</xsl:param>
 
-   <!-- Placement of titles -->
+   <!-- Placement of titles (Seam specific) -->
    <xsl:param name="formal.title.placement">
       figure after example before equation before table before procedure before
    </xsl:param>
+   
+   
    <!-- Callouts -->
-
+   
    <!-- Don't use graphics, use a simple number style -->
    <xsl:param name="callout.graphics">0</xsl:param>
+   
+   <!-- Place callout marks at this column in annotated areas -->
    <xsl:param name="callout.defaultcolumn">90</xsl:param>
 
-   <!-- Place callout marks at this column in annotated areas -->
-
+   <!-- Simple list of authors -->
    <xsl:template match="author" mode="titlepage.mode">
       <div class="{name(.)}">
          <xsl:call-template name="person.name" />
@@ -42,12 +45,14 @@
       </div>
    </xsl:template>
 
+   <!-- Simple affiliation (put it in brackets) -->
    <xsl:template match="affiliation" mode="titlepage.mode">
       (
       <xsl:apply-templates mode="titlepage.mode" />
       )
    </xsl:template>
 
+   <!-- And put don't put <br /> everywhere -->
    <xsl:template match="orgname" mode="titlepage.mode">
       <span class="{name(.)}">
          <xsl:apply-templates mode="titlepage.mode" />

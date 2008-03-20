@@ -70,6 +70,11 @@
       </fo:inline>
 
    </xsl:template>
+   
+   <!-- Make examples, tables etc. break across pages -->
+   <xsl:attribute-set name="formal.object.properties">
+      <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
+   </xsl:attribute-set>
 
    <!-- Correct placement of titles for figures and examples. -->
    <xsl:param name="formal.title.placement">
@@ -81,6 +86,7 @@
    <xsl:template name="book.titlepage.verso"></xsl:template>
    <xsl:template name="book.titlepage.separator"></xsl:template>
 
+   <!-- Use our own slightly simpler title page (just show title, version, authors) -->
    <xsl:template name="book.titlepage.recto">
       <xsl:choose>
          <xsl:when test="bookinfo/title">
@@ -103,8 +109,6 @@
          select="info/issuenum" />
       <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
          select="issuenum" />
-
-
 
       <xsl:choose>
          <xsl:when test="bookinfo/subtitle">
@@ -156,16 +160,24 @@
       <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
          select="info/publisher" />
    </xsl:template>
+   
+   <!-- Change the font color for titles to SeamFramework.org one -->
 
    <xsl:param name="title.color">#576C74</xsl:param>
 
+   <!-- Change to monospace font for programlisting, needed to workaround crappy callouts -->
    <xsl:param name="programlisting.font" select="$monospace.font.family" />
+   
+   <!-- Make the font for programlisting slightly smaller -->
    <xsl:param name="programlisting.font.size" select="'75%'" />
+   
+   <!-- Now, set enable scalefit for large images -->
    <xsl:param name="graphicsize.extension" select="'1'" />
 
    <xsl:param name="default.image.width">17.4cm</xsl:param>
 
-   <!-- Style tables -->
+
+   <!-- Style tables to look like SeamFramework.org-->
 
    <xsl:param name="table.cell.border.color">#D3D2D1</xsl:param>
    <xsl:param name="table.frame.border.color">#D3D2D1</xsl:param>
@@ -208,10 +220,6 @@
          <xsl:attribute name="background-color">#EDE8DB</xsl:attribute>
       </xsl:if>
    </xsl:template>
-
-   <xsl:attribute-set name="formal.object.properties">
-      <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
-   </xsl:attribute-set>
 
 
 </xsl:stylesheet>
