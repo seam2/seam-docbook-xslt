@@ -170,12 +170,12 @@
    <xsl:param name="table.cell.border.color">#D3D2D1</xsl:param>
    <xsl:param name="table.frame.border.color">#D3D2D1</xsl:param>
    <xsl:param name="table.cell.border.thickness">0.6pt</xsl:param>
-   
-<xsl:param name="table.frame.border.thickness">0.6pt</xsl:param>
-<xsl:param name="table.cell.border.right.color">white</xsl:param>
-<xsl:param name="table.cell.border.left.color">#D3D2D1</xsl:param>
-<xsl:param name="table.frame.border.right.color">white</xsl:param>
-<xsl:param name="table.frame.border.left.color">white</xsl:param>
+
+   <xsl:param name="table.frame.border.thickness">0.6pt</xsl:param>
+   <xsl:param name="table.cell.border.right.color">white</xsl:param>
+   <xsl:param name="table.cell.border.left.color">#D3D2D1</xsl:param>
+   <xsl:param name="table.frame.border.right.color">white</xsl:param>
+   <xsl:param name="table.frame.border.left.color">white</xsl:param>
 
    <xsl:template name="table.cell.block.properties">
       <!-- highlight this entry? -->
@@ -208,5 +208,10 @@
          <xsl:attribute name="background-color">#EDE8DB</xsl:attribute>
       </xsl:if>
    </xsl:template>
+
+   <xsl:attribute-set name="formal.object.properties">
+      <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
+   </xsl:attribute-set>
+
 
 </xsl:stylesheet>
