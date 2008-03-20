@@ -159,5 +159,10 @@
 
    <xsl:param name="title.color">#576C74</xsl:param>
 
+   <xsl:param name="programlisting.font" select="$monospace.font.family" />
+   <xsl:param name="programlisting.font.size" select="'75%'" />
+   <xsl:param name="graphicsize.extension" select="'1'" />
+   
+   <xsl:param name="default.image.width">17.4cm</xsl:param>
 
 </xsl:stylesheet>

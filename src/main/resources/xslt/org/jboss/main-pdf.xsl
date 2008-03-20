@@ -1030,8 +1030,6 @@ Version:1.72
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/issuenum"/>
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/issuenum"/>
   <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="issuenum"/>
-  
-  <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/releaseinfo"/>
 
   <xsl:choose>
     <xsl:when test="bookinfo/subtitle">
@@ -1057,6 +1055,22 @@ Version:1.72
     <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/invpartnumber"/>
     <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/invpartnumber"/>
   </fo:block>
+  <fo:block xsl:use-attribute-sets="book.titlepage.recto.style" color="black">
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'isbn'"/>
+	</xsl:call-template>
+	<xsl:text>: </xsl:text>
+    <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/isbn"/>
+    <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/isbn"/>
+  </fo:block>
+  <fo:block xsl:use-attribute-sets="book.titlepage.recto.style" color="black"> 
+    <xsl:call-template name="gentext">
+      <xsl:with-param name="key" select="'pubdate'"/>
+	</xsl:call-template>
+	<xsl:text>: </xsl:text>
+    <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="bookinfo/pubdate"/>
+    <xsl:apply-templates mode="book.titlepage.recto.auto.mode" select="info/pubdate"/>
+  </fo:block>
 </xsl:template>
 
 <xsl:template name="book.titlepage.verso">
@@ -1072,6 +1086,17 @@ Version:1.72
 </xsl:template>
 
 <xsl:template name="book.titlepage3.recto">
+  <xsl:choose>
+    <xsl:when test="bookinfo/title">
+      <xsl:apply-templates mode="book.titlepage.verso.auto.mode" select="bookinfo/title"/>
+    </xsl:when>
+    <xsl:when test="info/title">
+      <xsl:apply-templates mode="book.titlepage.verso.auto.mode" select="info/title"/>
+    </xsl:when>
+    <xsl:when test="title">
+      <xsl:apply-templates mode="book.titlepage.verso.auto.mode" select="title"/>
+    </xsl:when>
+  </xsl:choose>
 
   <xsl:apply-templates mode="book.titlepage.verso.auto.mode" select="bookinfo/authorgroup"/>
   <xsl:apply-templates mode="book.titlepage.verso.auto.mode" select="info/authorgroup"/>
@@ -1214,5 +1239,7 @@ Version:1.72
     </fo:list-item-body>
   </fo:list-item>
 </xsl:template>
+
+<xsl:param name="programlisting.font" select="'verdana,helvetica,sans-serif'" />
 
 </xsl:stylesheet>

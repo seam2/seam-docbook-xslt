@@ -9,7 +9,11 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'
    xmlns="http://www.w3.org/TR/xhtml1/transitional"
    xmlns:fo="http://www.w3.org/1999/XSL/Format"
-   exclude-result-prefixes="#default">
+   xmlns:rf="java:org.richfaces.highlight.XhtmlRendererFactory"
+   xmlns:sverb="http://nwalsh.com/xslt/ext/com.nwalsh.saxon.Verbatim"
+   xmlns:xverb="com.nwalsh.xalan.Verbatim"
+   xmlns:lxslt="http://xml.apache.org/xslt"
+   exclude-result-prefixes="sverb xverb lxslt">
 
    <!-- These extensions are required for table printing and other stuff -->
    <xsl:param name="use.extensions">1</xsl:param>
@@ -50,10 +54,10 @@
       </span>
    </xsl:template>
 
-<xsl:template match="jobtitle" mode="titlepage.mode">
-  <span class="{name(.)}">
-    <xsl:apply-templates mode="titlepage.mode"/>
-  </span>
-</xsl:template>
+   <xsl:template match="jobtitle" mode="titlepage.mode">
+      <span class="{name(.)}">
+         <xsl:apply-templates mode="titlepage.mode" />
+      </span>
+   </xsl:template>
 
 </xsl:stylesheet>
