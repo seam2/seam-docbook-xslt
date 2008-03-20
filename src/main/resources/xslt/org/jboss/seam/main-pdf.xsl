@@ -162,7 +162,51 @@
    <xsl:param name="programlisting.font" select="$monospace.font.family" />
    <xsl:param name="programlisting.font.size" select="'75%'" />
    <xsl:param name="graphicsize.extension" select="'1'" />
-   
+
    <xsl:param name="default.image.width">17.4cm</xsl:param>
+
+   <!-- Style tables -->
+
+   <xsl:param name="table.cell.border.color">#D3D2D1</xsl:param>
+   <xsl:param name="table.frame.border.color">#D3D2D1</xsl:param>
+   <xsl:param name="table.cell.border.thickness">0.6pt</xsl:param>
+   
+<xsl:param name="table.frame.border.thickness">0.6pt</xsl:param>
+<xsl:param name="table.cell.border.right.color">white</xsl:param>
+<xsl:param name="table.cell.border.left.color">#D3D2D1</xsl:param>
+<xsl:param name="table.frame.border.right.color">white</xsl:param>
+<xsl:param name="table.frame.border.left.color">white</xsl:param>
+
+   <xsl:template name="table.cell.block.properties">
+      <!-- highlight this entry? -->
+      <xsl:if test="ancestor::thead or ancestor::tfoot">
+         <xsl:attribute name="font-weight">bold</xsl:attribute>
+         <xsl:attribute name="background-color">#EDE8DB</xsl:attribute>
+         <xsl:attribute name="color">black</xsl:attribute>
+      </xsl:if>
+   </xsl:template>
+
+   <!--
+      From: fo/table.xsl
+      Reason: Table Header format
+      Version:1.72
+   -->
+   <!-- customize this template to add row properties -->
+   <xsl:template name="table.row.properties">
+      <xsl:variable name="bgcolor">
+         <xsl:call-template name="dbfo-attribute">
+            <xsl:with-param name="pis" select="processing-instruction('dbfo')" />
+            <xsl:with-param name="attribute" select="'bgcolor'" />
+         </xsl:call-template>
+      </xsl:variable>
+      <xsl:if test="$bgcolor != ''">
+         <xsl:attribute name="background-color">
+      <xsl:value-of select="$bgcolor" />
+    </xsl:attribute>
+      </xsl:if>
+      <xsl:if test="ancestor::thead or ancestor::tfoot">
+         <xsl:attribute name="background-color">#EDE8DB</xsl:attribute>
+      </xsl:if>
+   </xsl:template>
 
 </xsl:stylesheet>
