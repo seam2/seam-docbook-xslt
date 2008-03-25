@@ -16,7 +16,6 @@
    <!-- <xsl:import href="classpath:/xslt/org/jboss/nochunk-html.xsl"/>-->
    <xsl:import href="../nochunk-html.xsl" />
    <xsl:import href="common-xhtml.xsl" />
-   <xsl:import href="version.xsl" />
    
    <xsl:param name="html.stylesheet" select="'css/seamframework-nochunk.css'" />
    
