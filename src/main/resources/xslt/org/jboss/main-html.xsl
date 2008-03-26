@@ -23,6 +23,9 @@
 <xsl:include href="xhtml-common.xsl"/>
 <xsl:include href="highlight.xsl"/>
 
+<xsl:param name="jbossOrgHref" select="'http://www.jboss.org'" />
+<xsl:param name="commDocHref" select="'http://labs.jboss.com/projects/docs'" />
+
 <xsl:param name="confidential" select="0"/>
 
 <xsl:param name="generate.legalnotice.link" select="1"/>
@@ -97,7 +100,7 @@ Version:
 					</xsl:attribute>
 					<a>
 						<xsl:attribute name="href">
-							<xsl:text>http://www.jboss.org</xsl:text>
+							<xsl:value-of select="$jbossOrgHref" />
 						</xsl:attribute>
 						<xsl:attribute name="class">
 							<xsl:text>jbossOrg_href</xsl:text>
@@ -108,7 +111,7 @@ Version:
 					</a>
 					<a>
 						<xsl:attribute name="href">
-							<xsl:text>http://labs.jboss.com/projects/docs</xsl:text>
+							<xsl:value-of select="$commDocHref" />
 						</xsl:attribute>
 						<xsl:attribute name="class">
 							<xsl:text>commDoc_href</xsl:text>

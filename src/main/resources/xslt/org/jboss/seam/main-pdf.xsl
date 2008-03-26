@@ -70,7 +70,7 @@
       </fo:inline>
 
    </xsl:template>
-   
+
    <!-- Make examples, tables etc. break across pages -->
    <xsl:attribute-set name="formal.object.properties">
       <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
@@ -160,17 +160,19 @@
       <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
          select="info/publisher" />
    </xsl:template>
-   
+
    <!-- Change the font color for titles to SeamFramework.org one -->
 
    <xsl:param name="title.color">#576C74</xsl:param>
+   <xsl:param name="titlepage.color">#885324</xsl:param>
+   <xsl:param name="chaptertitle.color">#BA5624</xsl:param>
 
    <!-- Change to monospace font for programlisting, needed to workaround crappy callouts -->
    <xsl:param name="programlisting.font" select="$monospace.font.family" />
-   
+
    <!-- Make the font for programlisting slightly smaller -->
    <xsl:param name="programlisting.font.size" select="'75%'" />
-   
+
    <!-- Now, set enable scalefit for large images -->
    <xsl:param name="graphicsize.extension" select="'1'" />
 

@@ -314,11 +314,13 @@ article toc
 	<xsl:attribute name="start-indent"><xsl:value-of select="$title.margin.left"/></xsl:attribute>
 </xsl:attribute-set>
 
+<xsl:param name="titlepage.color" select="$title.color"/>
+
 <xsl:attribute-set name="book.titlepage.recto.style">
 	<xsl:attribute name="font-family">
 		<xsl:value-of select="$title.fontset"/>
 	</xsl:attribute>
-	<xsl:attribute name="color"><xsl:value-of select="$title.color"/></xsl:attribute>
+	<xsl:attribute name="color"><xsl:value-of select="$titlepage.color"/></xsl:attribute>
 	<xsl:attribute name="font-weight">bold</xsl:attribute>
 	<xsl:attribute name="font-size">12pt</xsl:attribute>
 	<xsl:attribute name="text-align">center</xsl:attribute>
@@ -344,8 +346,10 @@ article toc
 	<xsl:attribute name="start-indent"><xsl:value-of select="$title.margin.left"/></xsl:attribute>
 </xsl:attribute-set>
 
+<xsl:param name="chaptertitle.color" select="$title.color" />
+
 <xsl:attribute-set name="chapter.titlepage.recto.style">
-	<xsl:attribute name="color"><xsl:value-of select="$title.color"/></xsl:attribute>
+	<xsl:attribute name="color"><xsl:value-of select="$chaptertitle.color"/></xsl:attribute>
 	<xsl:attribute name="background-color">white</xsl:attribute>
 	<xsl:attribute name="font-size">
 		<xsl:choose>
@@ -1241,5 +1245,6 @@ Version:1.72
 </xsl:template>
 
 <xsl:param name="programlisting.font" select="'verdana,helvetica,sans-serif'" />
+<xsl:param name="programlisting.font.size" select="'100%'" />
 
 </xsl:stylesheet>
