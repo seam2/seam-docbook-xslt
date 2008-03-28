@@ -256,9 +256,11 @@ article toc
 <xsl:param name="body.start.indent">0pt</xsl:param>
 
 <xsl:param name="title.color">#4a5d75</xsl:param>
+<xsl:param name="chaptertitle.color" select="$title.color" />
+<xsl:param name="section.level1.title.color" select="$title.color" />
 
 <xsl:attribute-set name="section.title.level1.properties">
-	<xsl:attribute name="color"><xsl:value-of select="$title.color"/></xsl:attribute>
+	<xsl:attribute name="color"><xsl:value-of select="$section.level1.title.color"/></xsl:attribute>
 	<xsl:attribute name="font-size">
 		<xsl:value-of select="$body.font.master * 1.6"/>
 		<xsl:text>pt</xsl:text>
@@ -345,8 +347,6 @@ article toc
 	</xsl:attribute>
 	<xsl:attribute name="start-indent"><xsl:value-of select="$title.margin.left"/></xsl:attribute>
 </xsl:attribute-set>
-
-<xsl:param name="chaptertitle.color" select="$title.color" />
 
 <xsl:attribute-set name="chapter.titlepage.recto.style">
 	<xsl:attribute name="color"><xsl:value-of select="$chaptertitle.color"/></xsl:attribute>

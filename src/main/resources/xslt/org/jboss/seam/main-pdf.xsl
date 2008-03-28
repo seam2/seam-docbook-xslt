@@ -166,6 +166,7 @@
    <xsl:param name="title.color">#576C74</xsl:param>
    <xsl:param name="titlepage.color">#885324</xsl:param>
    <xsl:param name="chaptertitle.color">#BA5624</xsl:param>
+   <xsl:param name="section.level1.title.color">#BA5624</xsl:param>
 
    <!-- Change to monospace font for programlisting, needed to workaround crappy callouts -->
    <xsl:param name="programlisting.font" select="$monospace.font.family" />
