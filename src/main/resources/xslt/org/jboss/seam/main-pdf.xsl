@@ -10,10 +10,8 @@
    xmlns="http://www.w3.org/TR/xhtml1/transitional"
    xmlns:fo="http://www.w3.org/1999/XSL/Format"
    exclude-result-prefixes="#default">
-
-   <!-- Needs MPJDOCBOOK-8 -->
-   <!-- <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl"/>-->
-   <xsl:import href="../main-pdf.xsl" />
+   
+   <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl"/>
 
    <xsl:param name="use.extensions">1</xsl:param>
 

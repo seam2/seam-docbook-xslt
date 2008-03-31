@@ -11,9 +11,7 @@
    xmlns:fo="http://www.w3.org/1999/XSL/Format"
    exclude-result-prefixes="#default">
 
-   <!-- Needs MPJDOCBOOK-8 -->
-   <!-- <xsl:import href="classpath:/xslt/org/jboss/main-html.xsl"/>-->
-   <xsl:import href="../main-html.xsl" />
+   <xsl:import href="classpath:/xslt/org/jboss/main-html.xsl" />
    <xsl:import href="common-xhtml.xsl" />
 
    <xsl:param name="html.stylesheet" select="'css/seamframework.css'" />
