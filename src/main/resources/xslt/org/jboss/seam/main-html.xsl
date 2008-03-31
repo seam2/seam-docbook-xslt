@@ -13,6 +13,7 @@
 
    <xsl:import href="classpath:/xslt/org/jboss/main-html.xsl" />
    <xsl:import href="common-xhtml.xsl" />
+   <xsl:import href="common.xsl" />
 
    <xsl:param name="html.stylesheet" select="'css/seamframework.css'" />
    

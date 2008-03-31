@@ -10,8 +10,9 @@
    xmlns="http://www.w3.org/TR/xhtml1/transitional"
    xmlns:fo="http://www.w3.org/1999/XSL/Format"
    exclude-result-prefixes="#default">
-   
-   <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl"/>
+
+   <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl" />
+   <xsl:import href="common.xsl" />
 
    <xsl:param name="use.extensions">1</xsl:param>
 
@@ -129,34 +130,34 @@
             select="bookinfo/releaseinfo" />
       </fo:block>
 
-   </xsl:template>
+      <fo:block text-align="center" space-before="15.552pt">
+         <xsl:call-template name="gentext.by" />
+         <xsl:call-template name="gentext.space" />
+         <xsl:call-template name="person.name.list">
+            <xsl:with-param name="person.list" select="bookinfo/authorgroup/author" />
+         </xsl:call-template>
+      </fo:block>
 
+      <fo:block text-align="center" space-before="15.552pt">
+         <xsl:call-template name="gentext.editors" />
+         <xsl:call-template name="gentext.space" />
+         <xsl:call-template name="person.name.list">
+            <xsl:with-param name="person.list" select="bookinfo/authorgroup/editor" />
+         </xsl:call-template>
+      </fo:block>
+
+      <fo:block text-align="center" space-before="15.552pt">
+         <xsl:call-template name="gentext.others" />
+         <xsl:call-template name="gentext.space" />
+         <xsl:call-template name="person.name.list">
+            <xsl:with-param name="person.list" select="bookinfo/authorgroup/othercredit" />
+         </xsl:call-template>
+      </fo:block>
+
+   </xsl:template>
+   
    <xsl:template name="book.titlepage3.recto">
 
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="bookinfo/authorgroup" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="info/authorgroup" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="bookinfo/author" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="info/author" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="bookinfo/othercredit" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="info/othercredit" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="bookinfo/copyright" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="info/copyright" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="bookinfo/legalnotice" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="info/legalnotice" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="bookinfo/publisher" />
-      <xsl:apply-templates mode="book.titlepage.verso.auto.mode"
-         select="info/publisher" />
    </xsl:template>
 
    <!-- Change the font color for titles to SeamFramework.org one -->
@@ -268,10 +269,10 @@
          </fo:inline>
       </fo:block>
    </xsl:template>
-   
+
    <!-- Include the chapter no -->
-   <xsl:param name="section.label.includes.component.label" select="1"/>
-   
+   <xsl:param name="section.label.includes.component.label" select="1" />
+
    <!-- Make the section depth in the TOC 2, same as html -->
    <xsl:param name="toc.section.depth">2</xsl:param>
 
