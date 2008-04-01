@@ -6,181 +6,21 @@
    Author: Pete Muir
 -->
 
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version='1.0'
+<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+   version='1.0'
    xmlns="http://www.w3.org/TR/xhtml1/transitional"
    xmlns:fo="http://www.w3.org/1999/XSL/Format"
    exclude-result-prefixes="#default">
 
    <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl" />
-   <xsl:import href="common.xsl" />
-
-   <xsl:param name="use.extensions">1</xsl:param>
-
-   <!-- Place callout marks at this column in annotated areas -->
-
-   <!--###################################################
-      Callouts
-      ################################################### -->
-
-   <!-- We want to use callouts... -->
-   <xsl:param name="callout.extensions">1</xsl:param>
-
-   <!-- Place callout bullets at this column in programmlisting.-->
-   <xsl:param name="callout.defaultcolumn">80</xsl:param>
-
-   <!--
-      No, don't use crappy graphics for the callout bullets. This setting
-      enables some weird Unicode rendering for some fancy bullet points
-      in callouts. By default, this can only count to 10 and produces
-      strange results if you ever have more than 10 callouts for one
-      programlisting. We will fix that next.
-   -->
-   <xsl:param name="callout.graphics">0</xsl:param>
-
-   <!--
-      Again, fun with DocBook XSL: The callout bullets are rendered in
-      two places: In the programlisting itself and in the list below
-      the listing, with the actual callout text. The rendering in the
-      programlisting is some XSL transformer extension (e.g. a Saxon
-      extension), so we can't change that without messing with the
-      extensions. We only can turn it off by setting this limit to
-      zero, then, a simple bracket style like "(3)" and "(4)" will
-      be used in the programlisting.
-   -->
-   <xsl:param name="callout.unicode.number.limit" select="'0'"></xsl:param>
-
-   <!--
-      The callout bullets in the actual callout list will be rendered
-      with an XSL FO template. The default template is broken: limited to 10
-      nice looking Unicode bullet points and then it doesn't print anything,
-      the fallback doesn't work. We implement our own template, which is not
-      as complicated, more ugly, but works. As always, function is more
-      important than form.
-   -->
-   <xsl:template name="callout-bug">
-      <xsl:param name="conum" select='1' />
-      <fo:inline color="black" padding-top="0.1em" padding-bottom="0.1em"
-         padding-start="0.2em" padding-end="0.2em" baseline-shift="0.1em"
-         font-family="{$monospace.font.family}" font-weight="bold"
-         font-size="75%">
-         <xsl:text>(</xsl:text>
-         <xsl:value-of select="$conum" />
-         <xsl:text>)</xsl:text>
-      </fo:inline>
-
-   </xsl:template>
-
-   <!-- Make examples, tables etc. break across pages -->
-   <xsl:attribute-set name="formal.object.properties">
-      <xsl:attribute name="keep-together.within-column">auto</xsl:attribute>
-   </xsl:attribute-set>
-
-   <!-- Correct placement of titles for figures and examples. -->
-   <xsl:param name="formal.title.placement">
-      figure after example before equation before table before procedure before
-   </xsl:param>
-
-   <!-- Prevent blank pages in output -->
-   <xsl:template name="book.titlepage.before.verso"></xsl:template>
-   <xsl:template name="book.titlepage.verso"></xsl:template>
-   <xsl:template name="book.titlepage.separator"></xsl:template>
-
-   <!-- Use our own slightly simpler title page (just show title, version, authors) -->
-   <xsl:template name="book.titlepage.recto">
-      <xsl:choose>
-         <xsl:when test="bookinfo/title">
-            <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-               select="bookinfo/title" />
-         </xsl:when>
-         <xsl:when test="info/title">
-            <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-               select="info/title" />
-         </xsl:when>
-         <xsl:when test="title">
-            <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-               select="title" />
-         </xsl:when>
-      </xsl:choose>
-
-      <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-         select="bookinfo/issuenum" />
-      <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-         select="info/issuenum" />
-      <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-         select="issuenum" />
-
-      <xsl:choose>
-         <xsl:when test="bookinfo/subtitle">
-            <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-               select="bookinfo/subtitle" />
-         </xsl:when>
-         <xsl:when test="info/subtitle">
-            <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-               select="info/subtitle" />
-         </xsl:when>
-         <xsl:when test="subtitle">
-            <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-               select="subtitle" />
-         </xsl:when>
-      </xsl:choose>
-
-      <fo:block xsl:use-attribute-sets="book.titlepage.recto.style"
-         font-size="14pt" space-before="15.552pt">
-         <xsl:apply-templates mode="book.titlepage.recto.auto.mode"
-            select="bookinfo/releaseinfo" />
-      </fo:block>
-
-      <fo:block text-align="center" space-before="15.552pt">
-         <xsl:call-template name="gentext.by" />
-         <xsl:call-template name="gentext.space" />
-         <xsl:call-template name="person.name.list">
-            <xsl:with-param name="person.list" select="bookinfo/authorgroup/author" />
-         </xsl:call-template>
-      </fo:block>
-
-      <fo:block text-align="center" space-before="15.552pt">
-         <xsl:call-template name="gentext.editors" />
-         <xsl:call-template name="gentext.space" />
-         <xsl:call-template name="person.name.list">
-            <xsl:with-param name="person.list" select="bookinfo/authorgroup/editor" />
-         </xsl:call-template>
-      </fo:block>
-
-      <fo:block text-align="center" space-before="15.552pt">
-         <xsl:call-template name="gentext.others" />
-         <xsl:call-template name="gentext.space" />
-         <xsl:call-template name="person.name.list">
-            <xsl:with-param name="person.list" select="bookinfo/authorgroup/othercredit" />
-         </xsl:call-template>
-      </fo:block>
-
-   </xsl:template>
-   
-   <xsl:template name="book.titlepage3.recto">
-
-   </xsl:template>
 
    <!-- Change the font color for titles to SeamFramework.org one -->
-
    <xsl:param name="title.color">#576C74</xsl:param>
    <xsl:param name="titlepage.color">#885324</xsl:param>
    <xsl:param name="chaptertitle.color">#BA5624</xsl:param>
    <xsl:param name="section.level1.title.color">#BA5624</xsl:param>
 
-   <!-- Change to monospace font for programlisting, needed to workaround crappy callouts -->
-   <xsl:param name="programlisting.font" select="$monospace.font.family" />
-
-   <!-- Make the font for programlisting slightly smaller -->
-   <xsl:param name="programlisting.font.size" select="'75%'" />
-
-   <!-- Now, set enable scalefit for large images -->
-   <xsl:param name="graphicsize.extension" select="'1'" />
-
-   <xsl:param name="default.image.width">17.4cm</xsl:param>
-
-
    <!-- Style tables to look like SeamFramework.org-->
-
    <xsl:param name="table.cell.border.color">#D3D2D1</xsl:param>
    <xsl:param name="table.frame.border.color">#D3D2D1</xsl:param>
    <xsl:param name="table.cell.border.thickness">0.6pt</xsl:param>
@@ -222,58 +62,5 @@
          <xsl:attribute name="background-color">#EDE8DB</xsl:attribute>
       </xsl:if>
    </xsl:template>
-
-
-   <!--###################################################
-      Custom TOC (bold chapter titles)
-      ################################################### -->
-
-   <!-- Improve the TOC. -->
-   <xsl:template name="toc.line">
-      <xsl:variable name="id">
-         <xsl:call-template name="object.id" />
-      </xsl:variable>
-
-      <xsl:variable name="label">
-         <xsl:apply-templates select="." mode="label.markup" />
-      </xsl:variable>
-
-      <fo:block text-align-last="justify" end-indent="{$toc.indent.width}pt"
-         last-line-end-indent="-{$toc.indent.width}pt">
-         <fo:inline keep-with-next.within-line="always">
-            <fo:basic-link internal-destination="{$id}">
-
-               <!-- Chapter titles should be bold. -->
-               <xsl:choose>
-                  <xsl:when test="local-name(.) = 'chapter'">
-                     <xsl:attribute name="font-weight">bold</xsl:attribute>
-                  </xsl:when>
-               </xsl:choose>
-
-               <xsl:if test="$label != ''">
-                  <xsl:copy-of select="$label" />
-                  <xsl:value-of select="$autotoc.label.separator" />
-               </xsl:if>
-               <xsl:apply-templates select="." mode="titleabbrev.markup" />
-            </fo:basic-link>
-         </fo:inline>
-         <fo:inline keep-together.within-line="always">
-            <xsl:text> </xsl:text>
-            <fo:leader leader-pattern="dots" leader-pattern-width="3pt"
-               leader-alignment="reference-area"
-               keep-with-next.within-line="always" />
-            <xsl:text> </xsl:text>
-            <fo:basic-link internal-destination="{$id}">
-               <fo:page-number-citation ref-id="{$id}" />
-            </fo:basic-link>
-         </fo:inline>
-      </fo:block>
-   </xsl:template>
-
-   <!-- Include the chapter no -->
-   <xsl:param name="section.label.includes.component.label" select="1" />
-
-   <!-- Make the section depth in the TOC 2, same as html -->
-   <xsl:param name="toc.section.depth">2</xsl:param>
 
 </xsl:stylesheet>

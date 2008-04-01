@@ -13,10 +13,9 @@
 		exclude-result-prefixes="#default">
 
    <xsl:import href="classpath:/xslt/org/jboss/nochunk-html.xsl"/>
-   <xsl:import href="common-xhtml.xsl" />
-   <xsl:import href="common.xsl" />
    
    <xsl:param name="html.stylesheet" select="'css/seamframework-nochunk.css'" />
    <xsl:param name="jbossOrgHref" select="'http://www.seamframework.org'" />
    <xsl:param name="commDocHref" select="'http://www.seamframework.org/Documentation'" />
+   
 </xsl:stylesheet>
