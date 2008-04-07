@@ -17,8 +17,8 @@
    <!-- Change the font color for titles to SeamFramework.org one -->
    <xsl:param name="title.color">#576C74</xsl:param>
    <xsl:param name="titlepage.color">#885324</xsl:param>
-   <xsl:param name="chaptertitle.color">#BA5624</xsl:param>
-   <xsl:param name="section.level1.title.color">#BA5624</xsl:param>
+   <xsl:param name="chapter.title.color">#BA5624</xsl:param>
+   <xsl:param name="section.title.color">#BA5624</xsl:param>
 
    <!-- Style tables to look like SeamFramework.org-->
    <xsl:param name="table.cell.border.color">#D3D2D1</xsl:param>
