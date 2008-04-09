@@ -17,5 +17,6 @@
    <xsl:param name="html.stylesheet" select="'css/seamframework-nochunk.css'" />
    <xsl:param name="jbossOrgHref" select="'http://www.seamframework.org'" />
    <xsl:param name="commDocHref" select="'http://www.seamframework.org/Documentation'" />
+   <xsl:param name="jbossOrgLinkText" select="'SeamFramework.org'" />
    
 </xsl:stylesheet>
