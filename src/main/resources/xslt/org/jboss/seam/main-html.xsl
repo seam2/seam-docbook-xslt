@@ -15,8 +15,8 @@
    <xsl:import href="classpath:/xslt/org/jboss/main-html.xsl" />
 
    <xsl:param name="html.stylesheet" select="'css/seamframework.css'" />   
-   <xsl:param name="jbossOrgHref" select="'http://www.seamframework.org'" />
-   <xsl:param name="commDocHref" select="'http://www.seamframework.org/Documentation'" />
-   <xsl:param name="jbossOrgLinkText" select="'SeamFramework.org'" />
+   <xsl:param name="siteHref" select="'http://www.seamframework.org'" />
+   <xsl:param name="docHref" select="'http://www.seamframework.org/Documentation'" />
+   <xsl:param name="siteLinkText" select="'SeamFramework.org'" />
   
 </xsl:stylesheet>
