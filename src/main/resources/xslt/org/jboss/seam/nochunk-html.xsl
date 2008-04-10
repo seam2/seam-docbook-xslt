@@ -18,5 +18,7 @@
    <xsl:param name="siteHref" select="'http://www.seamframework.org'" />
    <xsl:param name="docHref" select="'http://www.seamframework.org/Documentation'" />
    <xsl:param name="siteLinkText" select="'SeamFramework.org'" />
-   
+   <xsl:param name="callout.graphics.path">images/seamframework/docbook/callouts/</xsl:param>
+   <xsl:param name="callout.icon.size">17px</xsl:param>
+
 </xsl:stylesheet>
