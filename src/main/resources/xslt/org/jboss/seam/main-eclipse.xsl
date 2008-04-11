@@ -17,8 +17,5 @@
   <xsl:param name="html.stylesheet" select="'css/seamframework-eclipse.css'" />
   <xsl:param name="callout.graphics.path">images/seamframework/docbook/callouts/</xsl:param>
   <xsl:param name="callout.icon.size">17px</xsl:param>
-  
-  <!-- Set chunk.section.depth to 0 to just chunk chapters. -->
-  <xsl:param name="chunk.section.depth" select="0"/>
 
 </xsl:stylesheet>
