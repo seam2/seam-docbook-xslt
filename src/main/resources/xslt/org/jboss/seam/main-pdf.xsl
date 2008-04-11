@@ -14,12 +14,24 @@
 
    <xsl:import href="classpath:/xslt/org/jboss/main-pdf.xsl" />
 
+<!-- Callouts -->
    <xsl:param name="callout.graphics.path">
       <xsl:if test="$img.src.path != ''">
          <xsl:value-of select="$img.src.path"/>
       </xsl:if>
       <xsl:text>images/seamframework/docbook/callouts/</xsl:text>
    </xsl:param>
+   
+<!-- Admonitions -->   
+   <xsl:param name="admon.graphics.path">
+      <xsl:if test="$img.src.path != ''">
+         <xsl:value-of select="$img.src.path"/>
+      </xsl:if>
+      <xsl:text>images/seamframework/docbook/</xsl:text>
+   </xsl:param>
+   
+   <!-- TODO: Add SVG images and then remove this as the default is .svg -->
+   <xsl:param name="admon.graphics.extension" select="'.png'"/>
       
    <!-- Change the font color for titles to SeamFramework.org one -->
    <xsl:param name="title.color">#576C74</xsl:param>
