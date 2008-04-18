@@ -13,4 +13,8 @@
 
   <xsl:param name="html.stylesheet" select="'css/seamframework-eclipse.css'"/>
 
+  <xsl:param name="eclipse.plugin.name">Seam Framework Help</xsl:param>
+  <xsl:param name="eclipse.plugin.id">org.jboss.seam.help</xsl:param>
+  <xsl:param name="eclipse.plugin.provider">SeamFramework.org</xsl:param>
+  
 </xsl:stylesheet>
