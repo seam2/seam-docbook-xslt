@@ -15,6 +15,7 @@
 
    <xsl:import href="classpath:/xslt/org/jboss/pdf.xsl"/>
    <xsl:import href="common.xsl"/>
+   <xsl:import href="fop1.xsl" />
       
    <!-- Change the font color for titles to SeamFramework.org one -->
    <xsl:param name="title.color">#576C74</xsl:param>
